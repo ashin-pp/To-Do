@@ -10,8 +10,8 @@ function Header() {
 
   function add() {
     if (newTask.trim() !== "") {
-      setTasks(prev => [...prev,{text:newTask,completed:false}]);
-      setNewTask("");
+          setTasks(prev => [...prev,{text:newTask,completed:false}]);
+          setNewTask("");
     }
   }
 
@@ -24,21 +24,7 @@ function Header() {
     
   }
 
-  function moveUp(index) {
-    if (index > 0) {
-      const update = [...tasks];
-      [update[index], update[index - 1]] = [update[index - 1], update[index]];
-      setTasks(update);
-    }
-  }
 
-  function moveDown(index) {
-    if (index < tasks.length - 1) {
-      const update = [...tasks];
-      [update[index], update[index + 1]] = [update[index + 1], update[index]];
-      setTasks(update);
-    }
-  }
 
   function toggle(index){
     const update=[...tasks];
@@ -53,26 +39,11 @@ function Header() {
 
     <div className="bg-white w-full max-w-md rounded-3xl shadow-2xl
       p-6 backdrop-blur-lg">
-
-     
-      <div className="flex justify-between text-sm text-gray-600 mb-4">
-        <span className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full">
-          Total: {tasks.length}
-        </span>
-        <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full">
-          Completed: {tasks.filter(val => val.completed).length}
-        </span>
-        <span className="bg-red-100 text-red-700 px-3 py-1 rounded-full">
-          Pending: {tasks.filter(val => !val.completed).length}
-        </span>
-      </div>
-
-     
+             
       <h1 className="text-3xl font-extrabold text-center text-gray-800 mb-6">
         📝 To-Do List
       </h1>
 
-     
       <div className="flex gap-2 mb-6">
         <input
           type="text"
@@ -81,8 +52,12 @@ function Header() {
           onChange={helper}
           className="flex-1 px-4 py-2 rounded-xl border border-gray-300
             focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+          
+            maxLength={20}
+            minLength={3}
         />
         <button
+
           onClick={add}
           className="bg-indigo-500 hover:bg-indigo-600 text-white
             px-5 py-2 rounded-xl font-semibold shadow-md transition"
@@ -119,18 +94,7 @@ function Header() {
             </div>
 
             <div className="flex gap-1">
-              <button
-                onClick={() => moveUp(i)}
-                className="bg-blue-200 hover:bg-blue-300 px-2 py-1 rounded-lg"
-              >
-                👆
-              </button>
-              <button
-                onClick={() => moveDown(i)}
-                className="bg-blue-200 hover:bg-blue-300 px-2 py-1 rounded-lg"
-              >
-                👇
-              </button>
+             
               <button
                 onClick={() => remove(i)}
                 className="bg-red-200 hover:bg-red-300 px-2 py-1 rounded-lg"
@@ -143,11 +107,7 @@ function Header() {
       </ul>
 
      
-      {tasks.length === 0 && (
-        <p className="text-center text-gray-400 mt-6 italic">
-          No tasks yet. Add one ✨
-        </p>
-      )}
+     
     </div>
   </div>
 );
